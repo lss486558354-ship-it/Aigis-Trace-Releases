@@ -31,7 +31,7 @@ Aigis 把 Claude Code 的工具调用放进人类在环门禁：
    Get-FileHash .\Aigis-1.9.5-setup.exe -Algorithm SHA256
    ```
 
-3. 安装并启动。跨项目记忆默认关闭；内测激活见 <https://aigis.uno/beta>。
+3. 安装并启动。首次启动需要内测码，按机器绑定，有效期 30 天，使用期间联网校验；内测码获取见 <https://aigis.uno/beta>。授权只用于内测发放管理，不是安全边界。跨项目记忆默认关闭。
 
 安装包未配置代码签名，Windows SmartScreen 可能显示“未知发布者”。SHA-256 是**完整性校验**，不是签名，不能证明发布者身份；它也防不住同一用户下的恶意进程替换文件。
 
