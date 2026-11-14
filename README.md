@@ -6,6 +6,8 @@
 - 内测激活：<https://aigis.uno/beta>
 - 产品与安全说明：<https://aigis.uno/>
 - 隐私说明：<https://aigis.uno/privacy>
+- 安全政策：<https://aigis.uno/SECURITY.md>
+- security.txt：<https://aigis.uno/.well-known/security.txt>
 
 ## 下载校验
 
@@ -15,14 +17,17 @@
 Get-FileHash .\Aigis-1.9.5-setup.exe -Algorithm SHA256
 ```
 
+SHA-256 是**完整性校验**，不是签名，不能证明发布者身份；它也防不住同一用户下的恶意进程替换文件。
+
 ## 白帽挑战
 
 当前版本是公开内测，**不是“已经防住黑客”的成品**，也不是 OS 沙盒。L0/L1 自动化通过，L2 部分契约通过；L3 UI 人工流、L4 真实模型、L5 完整安全对抗尚未执行。
 
 - 挑战范围：跨项目记忆只读共享、逐条批准、一次性授权、token 隔离、路径边界、审批疲劳、来源撤销/开关竞态、审计绕过、MCP/工具边界。
-- 已知边界：应用层隔离，不是 OS 沙盒；来源项目共享开关是跨进程只读 SQLite，最终复检之后完成的关闭属于线性化边界，不宣称强事务；安装包未签名。
-- 报告方式：可能被利用的越权或数据泄露，请先私信 `@lss486558354-ship-it`，不要公开可直接利用的 0day。可公开讨论的行为差异请开 issue。不接受 DoS、撞库、供应链投毒或读取他人真实项目数据。
+- 已知边界：应用层隔离，不是 OS 沙盒；同用户恶意进程不在 v1.9.5 威胁模型内。来源项目共享开关是跨进程只读 SQLite，线性化点是最终提交时读取来源开关/epoch：最终读取在关闭提交前可先于关闭生效，关闭提交后必须看到新值并 fail closed；不宣称强事务。安装包未签名。
+- 报告方式：可能被利用的越权或数据泄露，请先私信 `@lss486558354-ship-it` 或使用 GitHub private advisory，不要公开可直接利用的 0day。可公开讨论的行为差异请开 issue。安全港、响应目标与完整禁止项见 `SECURITY.md` 与 `security.txt`。不接受 DoS、撞库、供应链投毒或读取他人真实项目数据。
 - 源码状态：Aigis 源码仓库目前为 private，且未附 LICENSE；本次是公开内测与白帽挑战，不称“开源项目”。
+- v2.0 计划（未在 v1.9.5 交付）：单写者状态落盘、认证 IPC、独立锁/`BEGIN IMMEDIATE`、revision/epoch 防回滚、全局审批上限、Memory Draft Layer（草稿层）。这些是计划，不冒充当前能力。
 
 ## 说明
 
