@@ -53,7 +53,7 @@ v1.9.5 是**公开内测**，不是“已经防住黑客”的正式安全产品
 
 ## 白帽挑战
 
-完整说明见 [v1.9.5 白帽挑战说明](docs/v1.9.5-白帽挑战说明.md)；同名 Markdown 也作为 Release 资产提供。重点打跨项目记忆只读共享与 Gate 边界。
+完整说明见 [v1.9.5 白帽挑战说明](docs/v1.9.5-白帽挑战说明.md)；也可以直接下载 [Release 资产 Aigis-v1.9.5-whitehat.md](https://github.com/lss486558354-ship-it/Aigis-Trace-Releases/releases/download/v1.9.5/Aigis-v1.9.5-whitehat.md)。重点打跨项目记忆只读共享与 Gate 边界。
 
 ### I1–I12 不变量
 
