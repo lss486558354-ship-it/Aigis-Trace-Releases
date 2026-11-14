@@ -4,7 +4,7 @@
 
 Aigis 防的不是系统木马，防的是大模型发癫乱删你的代码。它是应用层边界，不是 OS 沙盒。
 
-[下载 v1.9.5 内测版](https://github.com/lss486558354-ship-it/Aigis-Trace-Releases/releases/latest) · [官网](https://aigis.uno/) · [白帽挑战说明](docs/v1.9.5-白帽挑战说明.md) · [SECURITY.md](SECURITY.md) · [security.txt](https://aigis.uno/.well-known/security.txt)
+[下载 v1.9.5 内测版](https://github.com/lss486558354-ship-it/Aigis-Trace-Releases/releases/tag/v1.9.5) · [官网](https://aigis.uno/) · [白帽挑战说明](docs/v1.9.5-白帽挑战说明.md) · [SECURITY.md](SECURITY.md) · [security.txt](https://aigis.uno/.well-known/security.txt)
 
 ![Aigis 门禁拒绝与执行轨迹](assets/aigis-gate.png)
 
@@ -24,7 +24,7 @@ Aigis 把 Claude Code 的工具调用放进人类在环门禁：
 
 系统要求：Windows 10/11 x64；Claude Code 最低 `2.1.139`，推荐 `2.1.295+`（用于 `onFailure: "block"`）。
 
-1. 打开 [Releases](https://github.com/lss486558354-ship-it/Aigis-Trace-Releases/releases/latest)，下载 `Aigis-1.9.5-setup.exe` 和对应的 `.sha256`。
+1. 打开 [v1.9.5 Release](https://github.com/lss486558354-ship-it/Aigis-Trace-Releases/releases/tag/v1.9.5)，下载 `Aigis-1.9.5-setup.exe` 和对应的 `.sha256`。
 2. 校验 SHA-256：
 
    ```powershell
