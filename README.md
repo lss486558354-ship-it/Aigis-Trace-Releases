@@ -4,7 +4,11 @@
 
 Aigis 防的不是系统木马，防的是大模型发癫乱删你的代码。它是应用层边界，不是 OS 沙盒。
 
-[下载 v1.9.5 内测版](https://github.com/lss486558354-ship-it/Aigis-Trace-Releases/releases/tag/v1.9.5) · [官网](https://aigis.uno/) · [白帽挑战说明](docs/v1.9.5-白帽挑战说明.md) · [SECURITY.md](SECURITY.md) · [security.txt](https://aigis.uno/.well-known/security.txt)
+[下载 v1.9.5 公开内测版](https://github.com/lss486558354-ship-it/Aigis-Trace-Releases/releases/tag/v1.9.5) · [1.9.20 内测 Pre-release](https://github.com/lss486558354-ship-it/Aigis-Trace-Releases/releases/tag/v1.9.20) · [官网](https://aigis.uno/) · [白帽挑战说明](docs/v1.9.5-白帽挑战说明.md) · [SECURITY.md](SECURITY.md) · [security.txt](https://aigis.uno/.well-known/security.txt)
+
+> 版本状态：v1.9.5 是公开内测入口；v1.9.20 是未签名 Pre-release，仅用于受邀
+> 内测，不是稳定版，也不代表完整发布验收。完整 L7 与 L3–L5 均未针对 1.9.20
+> 执行。
 
 ![Aigis 门禁拒绝与执行轨迹](assets/aigis-gate.png)
 
@@ -35,9 +39,13 @@ Aigis 把 Claude Code 的工具调用放进人类在环门禁：
 
 安装包未配置代码签名，Windows SmartScreen 可能显示“未知发布者”。SHA-256 是**完整性校验**，不是签名，不能证明发布者身份；它也防不住同一用户下的恶意进程替换文件。
 
+受邀内测可使用 [v1.9.20 Pre-release](https://github.com/lss486558354-ship-it/Aigis-Trace-Releases/releases/tag/v1.9.20)，下载 `Aigis-1.9.20-setup.exe` 和对应的 `.sha256`。该包同样未签名，完整 L7 与 L3–L5 未执行；公开入口仍是 v1.9.5。
+
 ## 当前验证状态
 
 v1.9.5 是**公开内测**，不是“已经防住黑客”的正式安全产品，也不是 OS 沙盒。
+
+v1.9.20 只增加界面状态短句和文案，不改变门禁、快照、回退或审计逻辑；未针对 1.9.20 复跑 L3–L5，也未执行完整 L7。下表的 PASS 项属于 v1.9.5，不代表 1.9.20 已完成发布验收。
 
 | 层 | 状态 |
 | --- | --- |
@@ -89,6 +97,46 @@ v1.9.5 是**公开内测**，不是“已经防住黑客”的正式安全产品
 - 应用层隔离，不是 OS 沙盒；同用户恶意进程不在 v1.9.5 威胁模型内。来源项目共享开关是跨进程只读 SQLite，线性化点是最终提交时读取来源开关/epoch：最终读取在关闭提交前可先于关闭生效，关闭提交后必须看到新值并 fail closed；不宣称强事务。
 - 路径测试有 1 项 symlink skip；NTFS hardlink 不在当前路径策略覆盖内，需 L5 验证。安装包未签名。
 - Claude Code < 2.1.295 无法设置 `onFailure: block`；Aigis 在该版本为 `degraded`，如果 Aigis 自身 hook 启动失败，可能按非阻断处理。
+
+## Design stance
+
+Aigis 平等地不信任所有人：模型、工具链，以及写这段代码的人。
+
+默认只读，逐轮授权，失败关闭。不是悲观，是知道：
+模型会犯错，工具会越界，作者也会写 bug。
+
+我对所有人一视同仁：都不惯着——包括我自己。
+不仰视权威，不俯视用户，只平视风险。
+
+## Why the tree
+
+树底看枯叶，树干看落叶，树冠看新叶。
+视角不同，不必互相说服。
+
+我不为谁弯腰，也不要求谁抬头。
+但门禁会替每一个路过的人，挡住该挡的风。
+
+## What Aigis is not
+
+Aigis 不征服 AI，也不替 AI 做决定。
+它只决定这一轮能不能动手；轮次结束，权限收回。
+
+它不是 OS 沙箱，不是安全认证，也不是“防住黑客”的承诺。
+它是应用层门禁：默认只读，逐轮授权，失败关闭，留下可回退的痕迹。
+
+## Manifesto
+
+在永夜中划过的流星注定不属于我，但我高度不止于此。
+
+我会继续前进，直到用我的无厄铁腕，将太阳挂在我的天空。
+（无厄：不被厄运定义。铁腕：先对自己执行。）
+
+I am a genius — at least until the next failing test.
+
+> 关于“无厄铁腕”：本来想致敬 DC 的 The Merciless（无悯铁腕），
+> 落笔时记混，生造了“无厄”。后来觉得这个错更好——
+> 无悯是毁灭，无厄是保护。
+> Aigis 不需要用暴力征服 AI，只需要用规则挡住越界。
 
 ## 源码状态
 
